@@ -36,5 +36,31 @@ app.get("/api/tasks/:id", (req, res) => {
   });
 });
 
+// POST create task
+
+app.post("api/tasks", (req, res) => {
+  const { title, completed = false } = req.body;
+
+  if (!title) {
+    return res.status(400).json({
+      status: "error",
+      message: "Title is required",
+    });
+  }
+
+  const newTask = {
+    id: String(nextId++),
+    title,
+    completed,
+  };
+
+  tasks.push(newTask);
+
+  res.status(201).json({
+    status: "success",
+    data: newTask,
+  });
+});
+
 
 
