@@ -4,10 +4,15 @@ const PORT = 3000;
 
 app.use(express.json());
 
-// In-memory storage
+// In-memory storage with initial demo data
 
-let tasks = [];
-let nextId = 1;
+let tasks = [
+    { id: '1', title: 'Learn Node.js', completed: false },
+    { id: '2', title: 'Build a REST API', completed: true },
+    { id: '3', title: 'Write documentation', completed: true }
+  ];
+
+let nextId = 4;
 
 // GET all tasks
 
