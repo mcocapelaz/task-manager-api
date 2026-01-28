@@ -63,24 +63,48 @@ app.post("api/tasks", (req, res) => {
 });
 
 // PUT update task
-app.put("/api/tasks/:id", (req, res) => {
-    const task = task.find((t) => t.id === req.params.id);
-  
-    if (!task) {
-      return res.status(404).json({
-        status: "error",
-        message: "Task not found",
-      });
-    }
-  
-    const { title, completed } = req.body;
-  
-    if (title !== undefined) task.title = title;
-    if (completed !== undefined) task.completed = completed;
-  
-    res.json({
-      status: "success",
-      data: task,
-    });
-  });
 
+app.put("/api/tasks/:id", (req, res) => {
+  const task = task.find((t) => t.id === req.params.id);
+
+  if (!task) {
+    return res.status(404).json({
+      status: "error",
+      message: "Task not found",
+    });
+  }
+
+  const { title, completed } = req.body;
+
+  if (title !== undefined) task.title = title;
+  if (completed !== undefined) task.completed = completed;
+
+  res.json({
+    status: "success",
+    data: task,
+  });
+});
+
+// DELETE task
+
+app.delete("./api/tasks/:id", (req, res) => {
+  const index = tasks.findIndex((t) => t.id === req.params.id);
+
+  if (index === -1) {
+    return res.status(404).json({
+      status: "error",
+      message: "Task not found",
+    });
+  }
+
+  tasks.splice(index, 1);
+
+  res.json({
+    status: "success",
+    message: "Task deleted successfully",
+  });
+});
+
+app.listen(PORT, () => {
+  console.log("Server running on http://localhost:${PORT}");
+});
