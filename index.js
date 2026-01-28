@@ -62,5 +62,25 @@ app.post("api/tasks", (req, res) => {
   });
 });
 
-
+// PUT update task
+app.put("/api/tasks/:id", (req, res) => {
+    const task = task.find((t) => t.id === req.params.id);
+  
+    if (!task) {
+      return res.status(404).json({
+        status: "error",
+        message: "Task not found",
+      });
+    }
+  
+    const { title, completed } = req.body;
+  
+    if (title !== undefined) task.title = title;
+    if (completed !== undefined) task.completed = completed;
+  
+    res.json({
+      status: "success",
+      data: task,
+    });
+  });
 
