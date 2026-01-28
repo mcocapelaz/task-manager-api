@@ -4,15 +4,17 @@
   "description": "Task Manager API is a simple API REST built with Node.js and Express that allows you to manage tasks.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "start": "node index.js"
   },
+   
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mcocapelaz/task-manager-api.git"
   },
-  "keywords": [],
+  "keywords": ["api", "rest", "tasks"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mcocapelaz/task-manager-api/issues"
   },
