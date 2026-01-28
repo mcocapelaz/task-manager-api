@@ -18,4 +18,23 @@ app.get("/api/tasks", (req, res) => {
   });
 });
 
+// GET task by ID
+
+app.get("/api/tasks/:id", (req, res) => {
+  const task = tasks.find((t) => t.id === req.params.id);
+
+  if (!task) {
+    return res.status(404).json({
+      status: "error",
+      message: "Task not found",
+    });
+  }
+
+  res.json({
+    status: "success",
+    data: task,
+  });
+});
+
+
 
