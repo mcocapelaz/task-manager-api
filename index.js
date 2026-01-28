@@ -7,10 +7,10 @@ app.use(express.json());
 // In-memory storage with initial demo data
 
 let tasks = [
-    { id: '1', title: 'Learn Node.js', completed: false },
-    { id: '2', title: 'Build a REST API', completed: true },
-    { id: '3', title: 'Write documentation', completed: true }
-  ];
+  { id: "1", title: "Learn Node.js", completed: false },
+  { id: "2", title: "Build a REST API", completed: true },
+  { id: "3", title: "Write documentation", completed: true },
+];
 
 let nextId = 4;
 
@@ -43,7 +43,7 @@ app.get("/api/tasks/:id", (req, res) => {
 
 // POST create task
 
-app.post("api/tasks", (req, res) => {
+app.post("/api/tasks", (req, res) => {
   const { title, completed = false } = req.body;
 
   if (!title) {
@@ -70,7 +70,7 @@ app.post("api/tasks", (req, res) => {
 // PUT update task
 
 app.put("/api/tasks/:id", (req, res) => {
-  const task = task.find((t) => t.id === req.params.id);
+  const task = tasks.find((t) => t.id === req.params.id);
 
   if (!task) {
     return res.status(404).json({
@@ -92,7 +92,7 @@ app.put("/api/tasks/:id", (req, res) => {
 
 // DELETE task
 
-app.delete("./api/tasks/:id", (req, res) => {
+app.delete("/api/tasks/:id", (req, res) => {
   const index = tasks.findIndex((t) => t.id === req.params.id);
 
   if (index === -1) {
@@ -111,5 +111,5 @@ app.delete("./api/tasks/:id", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("Server running on http://localhost:${PORT}");
+  console.log(`Server running on http://localhost:${PORT}`);
 });
